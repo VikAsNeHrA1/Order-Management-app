@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Orders</title>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h1>Order Management</h1>
+
+    <!-- Add Order Form -->
+    <div class="my-5">
+        <h3>Add a New Order</h3>
+        <form action="/orders/add" method="post">
+            <div class="mb-3">
+                <label for="storeName" class="form-label">Store Name:</label>
+                <input type="text" class="form-control" id="storeName" name="storeName" required>
+            </div>
+            <div class="mb-3">
+                <label for="orderList" class="form-label">Order List:</label>
+                <textarea class="form-control" id="orderList" name="orderList" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Order</button>
+        </form>
+    </div>
+
+    <!-- Display Orders -->
+    <div class="my-5">
+        <h3>Current Orders</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Store Name</th>
+                    <th scope="col">Order List</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% orders.forEach((order, index) => { %>
+                <tr>
+                    <th scope="row"><%= index + 1 %></th>
+                    <td><%= order.storeName %></td>
+                    <td><%= order.orderList %></td>
+                    <td>
+                        <form action="/orders/update/<%= order._id %>" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-warning btn-sm">Update</button>
+                        </form>
+                        <form action="/orders/delete/<%= order._id %>" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
