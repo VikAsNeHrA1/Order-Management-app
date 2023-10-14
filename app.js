@@ -15,35 +15,36 @@ const client = new MongoClient(uri, {
   useUnifiedTopology: true,
 });
 
+// Connect to MongoDB once at the start
+client.connect().then(() => {
+  console.log("Connected to MongoDB");
+}).catch(err => {
+  console.error("Failed to connect to MongoDB", err);
+  process.exit(1);
+});
+
 app.get('/orders', async (req, res) => {
   try {
-    await client.connect();
     const collection = client.db("warehouse").collection("orders");
     let orders = await collection.find().toArray();
     res.render('orders', { orders });
   } catch (err) {
     res.status(500).send("Error fetching orders");
-  } finally {
-    await client.close();
   }
 });
 
 app.post('/orders/add', async (req, res) => {
   try {
-    await client.connect();
     const collection = client.db("warehouse").collection("orders");
     await collection.insertOne({ storeName: req.body.storeName, orderList: req.body.orderList });
     res.redirect('/orders');
   } catch (err) {
     res.status(500).send("Error adding order");
-  } finally {
-    await client.close();
   }
 });
 
 app.post('/orders/update/:id', async (req, res) => {
   try {
-    await client.connect();
     const collection = client.db("warehouse").collection("orders");
     await collection.findOneAndUpdate(
       { _id: new ObjectId(req.params.id) },
@@ -52,21 +53,16 @@ app.post('/orders/update/:id', async (req, res) => {
     res.redirect('/orders');
   } catch (err) {
     res.status(500).send("Error updating order");
-  } finally {
-    await client.close();
   }
 });
 
 app.post('/orders/delete/:id', async (req, res) => {
   try {
-    await client.connect();
     const collection = client.db("warehouse").collection("orders");
     await collection.findOneAndDelete({ _id: new ObjectId(req.params.id) });
     res.redirect('/orders');
   } catch (err) {
     res.status(500).send("Error deleting order");
-  } finally {
-    await client.close();
   }
 });
 
