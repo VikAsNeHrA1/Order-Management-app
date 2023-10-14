@@ -23,7 +23,7 @@ client.connect().then(() => {
   process.exit(1);
 });
 
-app.get('/orders', async (req, res) => {
+app.get('/', async (req, res) => {
   try {
     const collection = client.db("warehouse").collection("orders");
     let orders = await collection.find().toArray();
@@ -67,3 +67,4 @@ app.post('/orders/delete/:id', async (req, res) => {
 });
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
