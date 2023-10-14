@@ -2,9 +2,9 @@
 **This app provides a streamlined order management solution tailored for warehouse environments. Recognizing that small business owners often lack efficient order management tools and resort to platforms like WhatsApp for team and distributor communication, our app offers a user-friendly alternative.**
 
 ### Team Members
-* Aman Nawaria
-* Vikas Nehra
-* Will Wiggins
+* Aman Nawaria [REPO](https://github.com/amannawaria12?tab=repositories)
+* Vikas Nehra [REPO](https://github.com/VikAsNeHrA1?tab=repositories)
+* Will Wiggins [REPO](https://github.com/mithrandiryeet?tab=repositories)
 
 ### Background
 During a recent summer vacation, one of our team members collaborated with a warehouse owner and gained insight into the business operations. He observed that their primary method for tracking warehouse stock was through a WhatsApp group chat. Recognizing the inefficiency, he believed there's potential for a more streamlined system to manage orders and monitor inventory levels.
