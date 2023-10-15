@@ -17,7 +17,7 @@ The purpose of this project is to create a warehouse- and store-specific applica
  
  #### Two User Pages
   Warehouse Page: 
-   &nbsp Accessible to warehouse staff. 
+   Accessible to warehouse staff. 
    Interface for receiving and processing incoming stock orders. 
      
   Store Owner Page: 
