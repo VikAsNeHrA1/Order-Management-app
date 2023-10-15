@@ -18,13 +18,13 @@ The purpose of this project is to create a warehouse- and store-specific applica
  #### Two User Pages
     
     Warehouse Page: 
-     Accessible to warehouse staff. 
-     Interface for receiving and processing incoming stock orders. 
+    Accessible to warehouse staff. 
+    Interface for receiving and processing incoming stock orders. 
      
      Store Owner Page: 
-      Accessible to store owners. 
-      Allows store owners to input stock requirements. 
-      Options for selecting and placing orders.
+     Accessible to store owners. 
+     Allows store owners to input stock requirements. 
+     Options for selecting and placing orders.
 
   #### Order Integration
    Seamless integration of the warehouse and store owner pages.
