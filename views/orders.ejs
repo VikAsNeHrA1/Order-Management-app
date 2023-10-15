@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        /* CSS from styles.css */
+        /* CSS  */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -74,27 +74,32 @@
             font-size: 18px;
             font-weight: bold;
         }
-
-        footer {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            padding: 20px 0;
-        }
-
         .social-icon {
             margin: 0 10px;
             font-size: 24px;
             color: white;
             text-decoration: none;
         }
+
+        footer {
+    width: 100%;
+    height: 200px; /* Adjust this based on your image's height or the height you want for your footer */
+    overflow: hidden;
+    position: relative;
+}
+
+footer img {
+    width: 100%; /* Adjust this and the following properties according to how you want the image to be displayed */
+    height: auto;
+    display: block;
+}
     </style>
 </head>
 
 <body>
     <header>
         <nav>
-            <div class="logo">LOGO</div>
+            <div class="logo"><img src="https://www.101distributorsga.com/_next/image?url=%2Fimages%2Fheader%2Flogo.png&w=1920&q=75" alt=""></div>
             <ul>
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Gallery</a></li>
@@ -107,15 +112,6 @@
         <main>
             <h1>Welcome to 101 Distributors</h1>
             <button>Contact us</button>
-        </main>
-    </div>
-    <footer>
-        <a href="#" class="social-icon">f</a>
-        <a href="#" class="social-icon">X</a>
-        <a href="#" class="social-icon">D</a>
-    </footer>
-
-    <!-- Content from orders.ejs -->
     <div class="container mt-5">
         <h1>Order Management</h1>
 
@@ -165,7 +161,11 @@
             </table>
         </div>
     </div>
-
+        </main>
+    </div>
+   <footer>
+    <img src="/views/Screenshot 2023-10-15 110340.png" alt="">
+   </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
