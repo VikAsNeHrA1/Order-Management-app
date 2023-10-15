@@ -16,13 +16,13 @@ This application is an Express-based web server connected to a MongoDB database,
 The purpose of this project is to create a warehouse- and store-specific application that will streamline the ordering and stock-management processes. Currently, many warehouses employ traditional messaging services like WhatsApp or iMessages to place orders. This program aims to swap out this inefficiency for a better-planned and focused system.
  
   #### Two User Pages
-    Warehouse Page:
-      Accessible to warehouse staff.
-      Interface for receiving and processing incoming stock orders.
-    
-    Store Owner Page:
-      Accessible to store owners.
-      Allows store owners to input stock requirements.
+    Warehouse Page: 
+     Accessible to warehouse staff. 
+     Interface for receiving and processing incoming stock orders. 
+     
+     Store Owner Page: 
+      Accessible to store owners. 
+      Allows store owners to input stock requirements. 
       Options for selecting and placing orders.
 
   #### Order Integration
