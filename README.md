@@ -24,3 +24,15 @@ The purpose of this project is to create a warehouse- and store-specific applica
       Accessible to store owners.
       Allows store owners to input stock requirements.
       Options for selecting and placing orders.
+
+  #### Order Integration
+   Seamless integration of the warehouse and store owner pages.
+   Shop owners have the ability to add products, set quantities, and place orders.
+   Details about ordered stock are automatically sent to the warehouse page for processing.
+
+  #### User-Friendly Interfaces
+   Intuitive design for both warehouse and store owner pages.
+   Simple stock input mechanisms for store owners.
+   Efficient order processing for warehouse staff.
+
+  
