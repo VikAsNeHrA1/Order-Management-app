@@ -4,8 +4,10 @@
     "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
+    "mongo": "^0.1.0",
     "mongodb": "^6.1.0",
-    "node": "^20.7.0"
+    "node": "^20.7.0",
+    "nodemon": "^3.0.1"
   },
   "name": "order-management-app",
   "description": "**This app provides a streamlined order management solution tailored for warehouse environments. Recognizing that small business owners often lack efficient order management tools and resort to platforms like WhatsApp for team and distributor communication, our app offers a user-friendly alternative.**",
