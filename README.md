@@ -1,7 +1,10 @@
 # Order-Management-app
 **This app provides a streamlined order management solution tailored for warehouse environments. Recognizing that small business owners often lack efficient order management tools and resort to platforms like WhatsApp for team and distributor communication, our app offers a user-friendly alternative.**
 
-### Team Members
+### Team Name
+**Warehouse Wizards**
+
+## Team Members
 * Aman Nawaria [REPO](https://github.com/amannawaria12?tab=repositories)
 * Vikas Nehra [REPO](https://github.com/VikAsNeHrA1?tab=repositories)
 * Will Wiggins [REPO](https://github.com/mithrandiryeet?tab=repositories)
