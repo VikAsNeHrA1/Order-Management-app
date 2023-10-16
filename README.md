@@ -14,6 +14,11 @@ This application is an Express-based web server connected to a MongoDB database,
 
 ### Project Scope
 This project aims to develop a tailored application for warehouses and stores, enhancing the efficiency of order placement and inventory management. Recognizing that many warehouses currently rely on conventional messaging platforms like WhatsApp or iMessages for order processing, our program seeks to replace these makeshift methods with a more cohesive and targeted system.
+
+_Examples of Current Order Management_
+---
+![Image 1](https://github.com/mithrandiryeet/oscar-pics/blob/main/IMG_7509.jpg) ![Image 2](https://github.com/mithrandiryeet/oscar-pics/blob/main/IMG_7510.jpg)
+ ---
  
  #### Two User Pages
   Warehouse Page: 
