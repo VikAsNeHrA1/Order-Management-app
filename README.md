@@ -13,7 +13,7 @@ During a recent summer vacation, one of our team members collaborated with a war
 This application is an Express-based web server connected to a MongoDB database, specifically designed for managing orders within a warehouse setting. The application offers CRUD (Create, Read, Update, Delete) operations for orders in the database.
 
 ### Project Scope
-The purpose of this project is to create a warehouse- and store-specific application that will streamline the ordering and stock-management processes. Currently, many warehouses employ traditional messaging services like WhatsApp or iMessages to place orders. This program aims to swap out this inefficiency for a better-planned and focused system.
+This project aims to develop a tailored application for warehouses and stores, enhancing the efficiency of order placement and inventory management. Recognizing that many warehouses currently rely on conventional messaging platforms like WhatsApp or iMessages for order processing, our program seeks to replace these makeshift methods with a more cohesive and targeted system.
  
  #### Two User Pages
   Warehouse Page: 
