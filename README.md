@@ -2,7 +2,7 @@
 **This app provides a streamlined order management solution tailored for warehouse environments. Recognizing that small business owners often lack efficient order management tools and resort to platforms like WhatsApp for team and distributor communication, our app offers a user-friendly alternative.**
 
 ### Team Name
-**Warehouse Wizards**
+**Team _Clumsy_**
 
 ## Team Members
 * Aman Nawaria [REPO](https://github.com/amannawaria12?tab=repositories)
