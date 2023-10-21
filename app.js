@@ -28,12 +28,11 @@ app.get('/', (req, res) => {
   res.render('login');
 });
 
-
 app.get('/orders', async (req, res) => {
   try {
     const collection = client.db("warehouse").collection("orders");
     let orders = await collection.find().toArray();
-    res.render('orders', { orders });
+    res.render('warehouse', { orders });  
   } catch (err) {
     res.status(500).send("Error fetching orders");
   }
@@ -76,22 +75,22 @@ app.get('/login', (req, res) => {
 });
 
 app.post('/login', (req, res) => {
-  // Dummy authentication, allowing any password to be valid
+  
   const userType = req.body.userType;
 
   if (userType === 'store') {
-      // Redirect to store owner page
-      res.redirect('/store-owner'); // Assuming this is the store owner page route
+      
+      res.redirect('/store-owner'); 
   } else if (userType === 'warehouse') {
-      // Redirect to warehouse manager page
-      res.redirect('/'); // Using root '/' for warehouse manager as per your given code
+      
+      res.redirect('/orders');  // Changed to /orders to render warehouse.ejs
   } else {
       res.status(400).send("Invalid user type");
   }
 });
 
 app.get('/store-owner', (req, res) => {
-  // Render store owner page. You need to create its ejs template.
+  
   res.render('store-owner'); 
 });
 
