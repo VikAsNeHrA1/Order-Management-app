@@ -4,6 +4,15 @@
 ### Team Name
 **Team _Clumsy_**
 
+User Story
+* As a store manager, I'm eager for the upcoming app to streamline our stock ordering process.
+* The app features a basic user-friendly interface. 
+* A simple "Add Order" button allows me to input order details such as quantity and notes, initiating a seamless transfer to the warehouse database.
+* Warehouse managers receive timely orders, enabling them to efficiently review and process incoming orders.
+* The app facilitates clear communication between store and warehouse managers, ensuring a smooth flow of information.
+* As orders are fulfilled in real-time, contributing to a more organized and error-free stock management system.
+* The overall result is a more efficient workflow for stock ordering and management for the retail stores.
+
 ## Team Members
 * Aman Nawaria [REPO](https://github.com/amannawaria12?tab=repositories)
 * Vikas Nehra [REPO](https://github.com/VikAsNeHrA1?tab=repositories)
