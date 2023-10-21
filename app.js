@@ -23,7 +23,13 @@ client.connect().then(() => {
   process.exit(1);
 });
 
-app.get('/', async (req, res) => {
+
+app.get('/', (req, res) => {
+  res.render('login');
+});
+
+
+app.get('/orders', async (req, res) => {
   try {
     const collection = client.db("warehouse").collection("orders");
     let orders = await collection.find().toArray();
@@ -65,6 +71,29 @@ app.post('/orders/delete/:id', async (req, res) => {
     res.status(500).send("Error deleting order");
   }
 });
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname + '/login.html');
+});
+
+app.post('/login', (req, res) => {
+  // Dummy authentication, allowing any password to be valid
+  const userType = req.body.userType;
+
+  if (userType === 'store') {
+      // Redirect to store owner page
+      res.redirect('/store-owner'); // Assuming this is the store owner page route
+  } else if (userType === 'warehouse') {
+      // Redirect to warehouse manager page
+      res.redirect('/'); // Using root '/' for warehouse manager as per your given code
+  } else {
+      res.status(400).send("Invalid user type");
+  }
+});
+
+app.get('/store-owner', (req, res) => {
+  // Render store owner page. You need to create its ejs template.
+  res.render('store-owner'); 
+});
+
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
-
