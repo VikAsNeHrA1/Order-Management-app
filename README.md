@@ -1,8 +1,6 @@
 # Order-Management-app
 **This app provides a streamlined order management solution tailored for warehouse environments. Recognizing that small business owners often lack efficient order management tools and resort to platforms like WhatsApp for team and distributor communication, our app offers a user-friendly alternative.**
 
-### Team Name
-**Team _Clumsy_**
 
 ### User Story
 * As a store manager, I'm eager for the upcoming app to streamline our stock ordering process.
@@ -12,6 +10,9 @@
 * The app facilitates clear communication between store and warehouse managers, ensuring a smooth flow of information.
 * As orders are fulfilled in real-time, contributing to a more organized and error-free stock management system.
 * The overall result is a more efficient workflow for stock ordering and management for the retail stores.
+
+### Team Name
+**Team _Clumsy_**
 
 ## Team Members
 * Aman Nawaria [REPO](https://github.com/amannawaria12?tab=repositories)
