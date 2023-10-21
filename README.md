@@ -4,7 +4,7 @@
 ### Team Name
 **Team _Clumsy_**
 
-User Story
+### User Story
 * As a store manager, I'm eager for the upcoming app to streamline our stock ordering process.
 * The app features a basic user-friendly interface. 
 * A simple "Add Order" button allows me to input order details such as quantity and notes, initiating a seamless transfer to the warehouse database.
