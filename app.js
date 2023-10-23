@@ -6,6 +6,54 @@ const { ObjectId } = require('mongodb');
 const port = process.env.PORT || 5500;
 const { MongoClient } = require('mongodb');
 const uri = process.env.MONGO_URI;
+// trying to set up OAuth
+const passport = require('passport');
+const GitHubStrategy = require('passport-github').Strategy;
+
+// more OAuth stuff
+
+app.use(require('express-session')({ secret: 'some random secret', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser((user, done) => {
+  done(null, user);
+});
+
+passport.deserializeUser((obj, done) => {
+  done(null, obj);
+});
+
+passport.use(new GitHubStrategy({
+    clientID: process.env.GITHUB_CLIENT_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
+    callbackURL: "http://localhost:5500/auth/github/callback"
+  },
+  (accessToken, refreshToken, profile, done) => {
+    return done(null, profile); // Here you would typically look up the GitHub user in your database
+  }
+));
+
+app.get('/auth/github',
+  passport.authenticate('github'));
+
+app.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  (req, res) => {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+// Make sure you're logged in middleware
+function ensureAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { return next(); }
+  res.redirect('/login');
+}
+
+// Usage example
+app.get('/private', ensureAuthenticated, (req, res) => {
+  res.send('This is a private route, only visible if logged in through GitHub!');
+});
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
