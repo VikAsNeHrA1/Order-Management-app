@@ -43,12 +43,16 @@ app.post('/orders/add', async (req, res) => {
     const collection = client.db("warehouse").collection("orders");
     await collection.insertOne({ storeName: req.body.storeName, orderList: req.body.orderList });
     
-    // Return a JSON response instead of redirecting
+    
     res.json({ success: true });
   } catch (err) {
-    // Send an error message in the response
+    
     res.json({ success: false, message: "Error adding order" });
   }
+});
+
+app.get('/order-success', (req, res) => {
+  res.render('order-success');
 });
 
 app.post('/orders/update/:id', async (req, res) => {
