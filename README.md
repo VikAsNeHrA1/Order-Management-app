@@ -3,12 +3,15 @@
 
 
 ### User Story
-* As a store manager, I'm eager for the upcoming app to streamline our stock ordering process.
+* **As a** store manager
+* **I want** a streamlined ordering process for products
+* **So that** there will be better communication between clients and employees
+---
 * The app features a basic user-friendly interface. 
-* A simple "Add Order" button allows me to input order details such as quantity and notes, initiating a seamless transfer to the warehouse database.
+* A simple "Add Order" button allows users to input order details such as quantity and notes, initiating a seamless transfer to the warehouse database.
 * Warehouse managers receive timely orders, enabling them to efficiently review and process incoming orders.
 * The app facilitates clear communication between store and warehouse managers, ensuring a smooth flow of information.
-* As orders are fulfilled in real-time, contributing to a more organized and error-free stock management system.
+* As orders are fulfilled in real-time, the app contributes to a more organized and error-free stock management system.
 * The overall result is a more efficient workflow for stock ordering and management for the retail stores.
 
 ### Team Name
