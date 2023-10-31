@@ -77,9 +77,6 @@ app.post('/orders/delete/:id', async (req, res) => {
     res.status(500).send("Error deleting order");
   }
 });
-app.get('/login', (req, res) => {
-  res.sendFile(__dirname + '/login.html');
-});
 
 app.post('/login', (req, res) => {
   
@@ -90,7 +87,7 @@ app.post('/login', (req, res) => {
       res.redirect('/store-owner'); 
   } else if (userType === 'warehouse') {
       
-      res.redirect('/orders');  // Changed to /orders to render warehouse.ejs
+      res.redirect('/orders');  
   } else {
       res.status(400).send("Invalid user type");
   }
