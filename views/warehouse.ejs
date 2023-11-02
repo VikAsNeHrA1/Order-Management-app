@@ -111,9 +111,19 @@
                         <td><%= order.storeName %></td>
                         <td><%= order.orderList %></td>
                         <td>
-                            <a href="/orders/update/<%= order._id %>">Edit</a> |
-                            <a href="/orders/delete/<%= order._id %>">Delete</a>
-                        </td>
+                          <button onclick="printOrder('<%= order.storeName %>', '<%= order.orderList %>')">Print</button> |
+                          <form action="/orders/delete/<%= order._id %>" method="post" style="display:inline;">
+                              <button type="submit">Delete</button>
+                          </form>
+
+                          <form action="/send-order-status/<%= order._id %>" method="post" style="display:inline;">
+                            <button type="submit">Send Order Status</button>
+                        </form>
+                        
+
+
+                      </td>
+                      
                     </tr>
                 <% }); %>
             </tbody>
@@ -123,5 +133,20 @@
     <footer>
        
     </footer>
+   <script>
+
+     function printOrder(storeName, orderList) {
+      const printWindow = window.open('', '_blank');
+      printWindow.document.write('<html><head><title>Print Order</title></head><body>');
+      printWindow.document.write('<h1>Order for ' + storeName + '</h1>');
+      printWindow.document.write('<p>' + orderList + '</p>');
+      printWindow.document.write('</body></html>');
+      printWindow.document.close();
+      printWindow.print();
+  }
+   </script>
+  
+
+
 </body>
 </html>
