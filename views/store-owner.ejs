@@ -178,11 +178,19 @@
         document.getElementById('addOrderForm').addEventListener('submit', function(event) {
             event.preventDefault();
     
-            const formData = new FormData(this);
+            const formData = {
+    storeName: document.getElementById('storeName').value,
+    orderList: document.getElementById('orderList').value
+};
+
     
             fetch('/orders/add', {
                 method: 'POST',
-                body: formData
+                headers: {
+    'Content-Type': 'application/json'
+},
+body: JSON.stringify(formData)
+
             })
             .then(response => response.json())
             .then(data => {

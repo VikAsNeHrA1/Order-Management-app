@@ -9,7 +9,7 @@ const uri = process.env.MONGO_URI;
 
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(bodyParser.json());
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -43,6 +43,7 @@ app.post('/orders/add', async (req, res) => {
     const collection = client.db("warehouse").collection("orders");
     await collection.insertOne({ storeName: req.body.storeName, orderList: req.body.orderList });
     
+    console.log(req.body);
     
     res.json({ success: true });
   } catch (err) {
