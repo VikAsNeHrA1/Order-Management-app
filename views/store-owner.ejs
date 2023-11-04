@@ -150,18 +150,32 @@
                 <div class="my-5">
                     <h3>Add a New Order</h3>
                     <form id="addOrderForm" action="/orders/add" method="post">
-
+                        
                         <div class="mb-3">
                             <label for="storeName" class="form-label">Store Name:</label>
                             <input type="text" class="form-control" id="storeName" name="storeName" required>
                         </div>
-                        <div class="mb-3">
-                            <label for="orderList" class="form-label">Order List:</label>
-                            <textarea class="form-control" id="orderList" name="orderList" rows="3" required></textarea>
-                        </div>
-                        <div class="text-center">
+                        
+                        <table class="table" id="items-table">
+                            <thead>
+                                <tr>
+                                    <th>Item-Name</th>
+                                    <th>Quantity</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="items-container">
+                                <!-- This will hold individual item rows -->
+                            </tbody>
+                        </table>
+                        <button type="button" onclick="addItem()" class="btn btn-primary mb-3">Add New Item</button>
+                        
+                        <div class="text-center mt-3">
                             <button type="submit" class="btn btn-primary">Send Order</button>
                         </div>
+                    </form>
+                </div>
+                
                     </form>
                 </div>
             </div>
@@ -175,40 +189,128 @@
 
     <!-- JavaScript to handle form submission and modal -->
     <script>
-        document.getElementById('addOrderForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-    
-            const formData = {
-    storeName: document.getElementById('storeName').value,
-    orderList: document.getElementById('orderList').value
-};
 
-    
-            fetch('/orders/add', {
-                method: 'POST',
-                headers: {
-    'Content-Type': 'application/json'
-},
-body: JSON.stringify(formData)
+function addItem() {
+        // Create new item row
+        const itemDiv = document.createElement('div');
+        itemDiv.classList.add('item-row', 'mb-3');
 
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    if (data.success) {
-                        window.location.href = '/order-success'; //
+        // Create input for item name
+        const itemNameInput = document.createElement('input');
+        itemNameInput.type = "text";
+        itemNameInput.name = "itemName[]";
+        itemNameInput.placeholder = "Item Name";
+        itemNameInput.classList.add('form-control', 'mr-2');
 
-} else {
-    alert('Error: ' + data.message);
+        // Create input for item quantity
+        const itemQuantityInput = document.createElement('input');
+        itemQuantityInput.type = "number";
+        itemQuantityInput.name = "itemQuantity[]";
+        itemQuantityInput.placeholder = "Quantity";
+        itemQuantityInput.classList.add('form-control', 'mr-2');
+
+        // Create remove button
+        const removeButton = document.createElement('button');
+        removeButton.type = "button";
+        removeButton.innerHTML = "Remove";
+        removeButton.onclick = function() { 
+            this.parentElement.remove();
+        }
+        removeButton.classList.add('btn', 'btn-danger');
+
+        // Append inputs and button to itemDiv
+        itemDiv.appendChild(itemNameInput);
+        itemDiv.appendChild(itemQuantityInput);
+        itemDiv.appendChild(removeButton);
+
+        // Append itemDiv to items-container
+        document.getElementById('items-container').appendChild(itemDiv);
+    }
+
+    // Add the first item row by default
+    function addItem() {
+    // Create a new table row
+    const itemRow = document.createElement('tr');
+
+    // Create input for item name
+    const itemNameTd = document.createElement('td');
+    const itemNameInput = document.createElement('input');
+    itemNameInput.type = "text";
+    itemNameInput.name = "itemName[]";
+    itemNameInput.placeholder = "Item Name";
+    itemNameInput.classList.add('form-control');
+    itemNameTd.appendChild(itemNameInput);
+
+    // Create input for item quantity
+    const itemQuantityTd = document.createElement('td');
+    const itemQuantityInput = document.createElement('input');
+    itemQuantityInput.type = "number";
+    itemQuantityInput.name = "itemQuantity[]";
+    itemQuantityInput.placeholder = "Quantity";
+    itemQuantityInput.classList.add('form-control');
+    itemQuantityTd.appendChild(itemQuantityInput);
+
+    // Create remove button
+    const actionsTd = document.createElement('td');
+    const removeButton = document.createElement('button');
+    removeButton.type = "button";
+    removeButton.innerHTML = "Remove";
+    removeButton.onclick = function() { 
+        this.parentElement.parentElement.remove();
+    }
+    removeButton.classList.add('btn', 'btn-danger');
+    actionsTd.appendChild(removeButton);
+
+    // Append inputs and button to itemRow
+    itemRow.appendChild(itemNameTd);
+    itemRow.appendChild(itemQuantityTd);
+    itemRow.appendChild(actionsTd);
+
+    // Append itemRow to items-container
+    document.getElementById('items-container').appendChild(itemRow);
 }
-                } else {
-                    alert('Error: ' + data.message);
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-        });
+
+// Add the first item row by default
+addItem();
+
+
+
+        document.getElementById('addOrderForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get store name value
+    const storeName = document.getElementById('storeName').value;
+
+    // Get dynamic item names and quantities
+    const itemNames = Array.from(document.querySelectorAll('input[name="itemName[]"]')).map(input => input.value);
+    const itemQuantities = Array.from(document.querySelectorAll('input[name="itemQuantity[]"]')).map(input => input.value);
+
+    // Create formData object
+    const formData = {
+        storeName: storeName,
+        itemName: itemNames,
+        itemQuantity: itemQuantities
+    };
+
+    fetch('/orders/add', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            window.location.href = '/order-success';
+        } else {
+            alert('Error: ' + data.message);
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+});
     </script>
     
 </body>
