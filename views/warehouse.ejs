@@ -103,7 +103,9 @@
                     <th>Store Name</th>
                     <th>Order List</th>
                     <th>Action</th>
+                    <th>Status</th>
                 </tr>
+                
             </thead>
             <tbody>
                 <% orders.forEach(order => { %>
@@ -123,6 +125,13 @@
 
 
                       </td>
+
+                      <td>
+                        <select onchange="updateOrderStatus('<%= order._id %>', this.value)">
+                            <option value="New" <%= order.status === "New" ? 'selected' : '' %>>New</option>
+                            <option value="In Progress" <%= order.status === "In Progress" ? 'selected' : '' %>>In Progress</option>
+                        </select>
+                    </td>
                       
                     </tr>
                 <% }); %>
@@ -143,7 +152,36 @@
       printWindow.document.write('</body></html>');
       printWindow.document.close();
       printWindow.print();
+
+      function updateOrderStatus(orderId, newStatus) {
+    fetch(`/orders/update/${orderId}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ status: newStatus })
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (!data.success) {
+            alert('Error updating order status');
+        }
+        // Optionally, you can refresh the page to reflect the changes
+        location.reload();
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+}
+
   }
+
+
    </script>
   
 
