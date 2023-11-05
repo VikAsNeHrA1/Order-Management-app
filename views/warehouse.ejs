@@ -156,14 +156,33 @@
   </footer>
    <script>
 
-     function printOrder(storeName, orderList) {
-      const printWindow = window.open('', '_blank');
-      printWindow.document.write('<html><head><title>Print Order</title></head><body>');
-      printWindow.document.write('<h1>Order for ' + storeName + '</h1>');
-      printWindow.document.write('<p>' + orderList + '</p>');
-      printWindow.document.write('</body></html>');
-      printWindow.document.close();
-      printWindow.print();
+function printOrder(storeName, orderList) {
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write('<html><head><title> Print Order </title></head><body>');
+  printWindow.document.write('<h1>Order for ' + storeName + '</h1>');
+
+  // Parse the JSON orderList
+  const items = JSON.parse(orderList);
+
+  if (Array.isArray(items)) {
+    printWindow.document.write('<table>');
+    printWindow.document.write('<thead><tr><th> Item Name </th><th> Item Quantity </th></tr></thead>');
+    printWindow.document.write('<tbody>');
+
+    items.forEach(item => {
+      printWindow.document.write('<tr><td>' + item.itemName + '</td><td>' + item.itemQuantity + '</td></tr>');
+    });
+
+    printWindow.document.write('</tbody></table>');
+  } else {
+    printWindow.document.write('<p>' + orderList + '</p>');
+  }
+
+  printWindow.document.write('</body></html>');
+  printWindow.document.close();
+  printWindow.print();
+}
+
 
       function updateOrderStatus(orderId, newStatus) {
     fetch(`/orders/update/${orderId}`, {
@@ -191,7 +210,7 @@
     });
 }
 
-  }
+  
 
 
    </script>
