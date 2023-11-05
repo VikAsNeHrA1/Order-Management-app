@@ -141,6 +141,7 @@
                     <select onchange="updateOrderStatus('<%= order._id %>', this.value)">
                       <option value="New" <%= order.status === "New" ? 'selected' : '' %>>New</option>
                       <option value="In Progress" <%= order.status === "In Progress" ? 'selected' : '' %>>In Progress</option>
+                      <option value="New" <%= order.status === "New" ? 'selected' : '' %>>Completed</option>
                     </select>
                   </td>
                 </tr>
