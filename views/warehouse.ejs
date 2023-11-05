@@ -91,51 +91,66 @@
     </nav>
 </header>
 <div class="main-content">
-  <main>
-      <h1 class="text-center mb-4">Current Orders</h1> <!-- Bootstrap utility classes for centering and spacing -->
-      <div class="container">
-        <table class="table table-dark table-bordered table-hover">
+    <main>
+        <h1 class="text-center mb-4">Current Orders</h1>
+        <div class="container">
+          <table class="table table-dark table-bordered table-hover">
             <thead>
-                <tr>
-                    <th>Store Name</th>
-                    <th>Order List</th>
-                    <th>Action</th>
-                    <th>Status</th>
-                </tr>
-                
+              <tr>
+                <th>Store Name</th>
+                <th>Order List</th>
+                <th>Action</th>
+                <th>Status</th>
+              </tr>
             </thead>
             <tbody>
-                <% orders.forEach(order => { %>
-                    <tr>
-                        <td><%= order.storeName %></td>
-                        <td><%= order.orderList %></td>
-                        <td>
-                          <button onclick="printOrder('<%= order.storeName %>', '<%= order.orderList %>')">Print</button> |
-                          <form action="/orders/delete/<%= order._id %>" method="post" style="display:inline;">
-                              <button type="submit">Delete</button>
-                          </form>
-
-                          <!-- <form action="/send-order-status/<%= order._id %>" method="post" style="display:inline;">
-                            <button type="submit">Send Order Status</button>
-                        </form> -->
-                        
-
-
-                      </td>
-
-                      <td>
-                        <select onchange="updateOrderStatus('<%= order._id %>', this.value)">
-                            <option value="New" <%= order.status === "New" ? 'selected' : '' %>>New</option>
-                            <option value="In Progress" <%= order.status === "In Progress" ? 'selected' : '' %>>In Progress</option>
-                        </select>
-                    </td>
-                      
-                    </tr>
-                <% }); %>
+              <% orders.forEach(order => { %>
+                <tr>
+                  <td><%= order.storeName %></td>
+                  <td>
+                    <% if (Array.isArray(order.orderList)) { %>
+                      <table> <!-- Nested table to display orderList -->
+                        <thead>
+                          <tr>
+                            <th>Item Name</th>
+                            <th>Item Quantity</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <% order.orderList.forEach(item => { %>
+                            <tr>
+                              <td><%= item.itemName %></td>
+                              <td><%= item.itemQuantity %></td>
+                            </tr>
+                          <% }); %>
+                        </tbody>
+                      </table>
+                    <% } else { %>
+                      <!-- Handle the case when orderList is not an array -->
+                      <%= order.orderList %>
+                    <% } %>
+                  </td>
+                  <td>
+                    <button onclick="printOrder('<%= order.storeName %>', '<%= JSON.stringify(order.orderList) %>')">Print</button> |
+                    <form action="/orders/delete/<%= order._id %>" method="post" style="display:inline;">
+                      <button type="submit">Delete</button>
+                    </form>
+                    <!-- Add the code for sending order status here -->
+                  </td>
+                  <td>
+                    <select onchange="updateOrderStatus('<%= order._id %>', this.value)">
+                      <option value="New" <%= order.status === "New" ? 'selected' : '' %>>New</option>
+                      <option value="In Progress" <%= order.status === "In Progress" ? 'selected' : '' %>>In Progress</option>
+                    </select>
+                  </td>
+                </tr>
+              <% }); %>
             </tbody>
-        </table>
-    </main>
-
+          </table>
+        </div>
+      </main>
+      
+      
     <footer>
       <img src="https://github.com/VikAsNeHrA1/Order-Management-app/blob/main/views/footer.png?raw=true" alt="Footer Image" id="footer-image">
   </footer>
@@ -168,7 +183,7 @@
         if (!data.success) {
             alert('Error updating order status');
         }
-        // Optionally, you can refresh the page to reflect the changes
+       
         location.reload();
     })
     .catch(error => {

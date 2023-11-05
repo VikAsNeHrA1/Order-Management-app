@@ -349,7 +349,7 @@ addItem();
 
 
 
-        document.getElementById('addOrderForm').addEventListener('submit', function(event) {
+document.getElementById('addOrderForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
     // Get store name value
@@ -359,11 +359,18 @@ addItem();
     const itemNames = Array.from(document.querySelectorAll('input[name="itemName[]"]')).map(input => input.value);
     const itemQuantities = Array.from(document.querySelectorAll('input[name="itemQuantity[]"]')).map(input => input.value);
 
+    // Build orderList array
+    const orderList = [];
+    for (let i = 0; i < itemNames.length; i++) {
+        const itemName = itemNames[i];
+        const itemQuantity = itemQuantities[i];
+        orderList.push({ itemName, itemQuantity });
+    }
+
     // Create formData object
     const formData = {
         storeName: storeName,
-        itemName: itemNames,
-        itemQuantity: itemQuantities
+        orderList: orderList, // Send orderList as an array of objects
     };
 
     fetch('/orders/add', {
@@ -385,6 +392,7 @@ addItem();
         console.error('Error:', error);
     });
 });
+
     </script>
     
 </body>
