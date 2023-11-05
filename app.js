@@ -105,11 +105,12 @@ app.get('/login', (req, res) => {
 app.post('/login', async (req, res) => {
   const collection = client.db("warehouse").collection("users");
   const user = await collection.findOne({ username: req.body.username });
-  
+
   if (user && await bcrypt.compare(req.body.password, user.password)) {
-    // Setting userType in the session to be used for authorization
+    // Setting userType and username in the session to be used for authorization and welcome message
     req.session.userType = user.userType;
-    
+    req.session.username = user.username; // Store the username in the session
+
     if (user.userType === 'store') {
       res.redirect('/store-owner');
     } else if (user.userType === 'warehouse') {
@@ -121,6 +122,7 @@ app.post('/login', async (req, res) => {
     res.status(401).send('Incorrect username or password');
   }
 });
+
 
 app.get('/signup', (req, res) => {
   res.render('signup');
@@ -162,8 +164,8 @@ function checkUserType(requiredType) {
 
 
 app.get('/store-owner', (req, res) => {
-  
-  res.render('store-owner'); 
+  const username = req.session.username; // Get the username from the session
+  res.render('store-owner', { username }); // Pass the username to the view
 });
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
