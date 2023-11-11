@@ -9,33 +9,29 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
     <style>
-        /* CSS */
         body {
             font-family: 'Open Sans', sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
             background-color: #333;
             color: white;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            padding: 10px 0;
         }
 
-        .main-content {
-            background-color: #333;
-            padding: 20px 0;
-            flex: 1 0 auto;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            margin-right: 30px;
+        .logo img {
+            width: 150px;
+            height: auto;
         }
 
         nav ul {
             list-style-type: none;
             padding: 0;
+            margin: 0;
             display: flex;
             align-items: center;
         }
@@ -44,170 +40,89 @@
             margin: 0 15px;
         }
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 450px;
-        }
-
         nav a {
             color: white;
             text-decoration: none;
-            font-weight: bold;
         }
 
-        main {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: calc(100vh - 100px);
+        .main-content {
+            padding: 20px;
         }
 
         button {
-            background-color: teal;
+            background-color: #ea4c88;
             color: white;
-            padding: 15px 25px;
             border: none;
-            border-radius: 30px;
+            border-radius: 5px;
+            padding: 10px 20px;
             cursor: pointer;
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0 auto; /* Center the button */
-            display: block;
+            margin-top: 20px;
         }
 
-        .social-icon {
-            margin: 0 10px;
-            font-size: 24px;
+        button:hover {
+            background-color: #d44179;
+        }
+
+        footer {
+            background-color: #333;
             color: white;
-            text-decoration: none;
+            text-align: center;
+            padding: 10px 0;
         }
 
-        /* From the reference to maintain consistency */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0 20px;
+            }
+
+            .main-content {
+                padding: 10px;
+            }
+        }
+
+        /* Forms and Table */
         input[type="text"],
         textarea {
-            background-color: #3b4148;
-            padding: 16px;
+            background-color: #fff;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
             width: 100%;
-            border: none;
-            color: #eee;
+            box-sizing: border-box;
         }
 
         input[type="text"]:focus,
         textarea:focus {
-            background-color: #434a52;
+            border-color: #ea4c88;
         }
 
-        .btn-primary {
-            background-color: #ea4c88;
-            color: #eee;
-        }
-
-        .btn-primary:hover {
-            background-color: #d44179;
-        }
-
-        label {
-            color: #eee;
-        }
-
-        form {
+        .table {
+            background-color: #fff;
+            border-collapse: collapse;
             width: 100%;
-            max-width: 320px;
-        }
-        footer {
-    flex-shrink: 0; 
-    text-align: center; 
-}
-
-#footer-image {
-    max-width: 100%; 
-    height: auto;
-}
-
-/* CSS for formatting the table like a shopping bag */
-#items-table {
-    background-color: inherit; /* Keep the background color the same as the body */
-    border: 2px solid #ccc;
-    border-radius: 10px;
-    padding: 20px;
-    width: 100%;
-}
-
-#items-table th {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    border-radius: 5px 5px 0 0;
-}
-
-#items-table td {
-    padding: 10px;
-}
-
-#items-container {
-    background-color: inherit; /* Keep the background color the same as the body */
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
-/* Increase spacing between buttons */
-#addNewBtn {
-    margin-bottom: 20px;
-}
-
-/* Additional styling for the "Send Order" button */
-#sendOrderBtn {
-    margin-top: 20px;
-    background-color: teal;
-    color: white;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    font-size: 18px;
-    font-weight: bold;
-    padding: 15px 25px;
-    width: 100%;
-}
-
-.mb-3 {
-            margin-bottom: 15px;
+            margin-top: 20px;
         }
 
-        /* Increase area for item name */
-        .form-control.item-name {
-            width: 70%;
+        .table th, .table td {
+            padding: 10px;
+            border: 1px solid #ddd;
         }
 
-        /* Reduce size of input quantity */
-        .form-control.item-quantity {
-            width: 30%;
+        .table th {
+            background-color: #ea4c88;
+            color: white;
         }
-
-        /* Add space between "Add New Item" button */
-        #addNewBtn {
-            margin-top: 10px;
-            margin-bottom: 10px;
-        }
-
-        /* Add space between "Add New Item" button and "Send Order" button */
-        #addNewBtn + .text-center {
-            margin-top: 10px;
-        }
-
-
-
     </style>
 </head>
 
 <body>
     
     <header>
-        <nav>
-            <div class="logo"><img src="https://www.101distributorsga.com/images/header/logo.png" alt=""></div>
-            <ul>
+        <nav class="container d-flex justify-content-between">
+            <div class="logo">
+                <img src="https://www.101distributorsga.com/images/header/logo.png" alt="101 Distributors Logo">
+            </div>
+            <ul class="d-flex align-items-center">
                 <li><a href="#">Home</a></li>
                 <li><a href="#">Gallery</a></li>
                 <li><a href="#">About us</a></li>
@@ -259,7 +174,7 @@
         <img src="https://github.com/VikAsNeHrA1/Order-Management-app/blob/main/views/footer.png?raw=true" alt="Footer Image" id="footer-image">
     </footer>
     
-   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- JavaScript to handle form submission and modal -->
     <script>
