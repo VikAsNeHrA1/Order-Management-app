@@ -30,51 +30,75 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 5%; /* Changed from fixed padding to percentage */
-      background-color: #222; /* Added for contrast */
+      padding: 20px 5%;
+      background-color: #222;
   }
 
   nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
-      padding: 5px 10px; /* Spacing for better touch target */
+      padding: 5px 10px;
   }
 
   nav a:hover {
-      background-color: #555; /* Hover effect for links */
+      background-color: #555;
   }
 
   main {
-      padding: 20px 5%; /* Consistent padding */
+      padding: 20px 5%;
   }
 
   table {
-      width: 100%; /* Table takes full width */
-      text-align: center; /* Text centered */
+      width: 100%;
+      text-align: center;
       border-collapse: collapse;
   }
 
   .table-dark td, .table-dark th {
-      border: 1px solid #555; /* Lighter border color for readability */
+      border: 1px solid #555;
   }
 
   button {
-      padding: 10px 20px; /* Adjusted button size */
-      margin: 5px; /* Spacing between buttons */
-      border-radius: 5px; /* Reduced border radius for a modern look */
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 5px;
   }
 
   footer {
       flex-shrink: 0;
-      padding: 20px 5%; /* Consistent padding */
-      background-color: #222; /* Footer background for contrast */
+      padding: 20px 5%;
+      background-color: #222;
   }
 
   #footer-image {
       max-width: 100%;
       height: auto;
-      margin-top: 20px; /* Spacing above the footer image */
+      margin-top: 20px;
+  }
+
+  @media only screen and (max-width: 768px) {
+      body {
+          font-size: 14px;
+      }
+
+      nav ul {
+          flex-direction: column;
+          padding: 0;
+      }
+
+      nav ul li {
+          margin-bottom: 10px;
+      }
+
+      .logo img {
+          width: 100%;
+          height: auto;
+      }
+
+      .table-responsive {
+          overflow-x: auto;
+      }
   }
 </style>
 </head>
