@@ -162,6 +162,13 @@ function checkUserType(requiredType) {
   }
 }
 
+app.get('/contact', (req, res) => {
+  res.render('contactUs'); // Assuming you have a contactUs.ejs file in your views folder
+});
+
+app.get('/home', (req, res) => {
+  res.render('login'); // Assuming you have a login.ejs file
+});
 
 app.get('/store-owner', (req, res) => {
   const username = req.session.username; // Get the username from the session
