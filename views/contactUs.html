@@ -170,7 +170,7 @@
               
                 <div class="my-5">
                     <h3>Contact Information</h3>
-                    <form id="contactForm" action="/submit-contact-info" method="post">
+                    <form id="contactForm" action="/submit-contact-info" method="post" onsubmit="showMessage(event)">
                         <div class="mb-3">
                             <label for="contactName" class="form-label">Name:</label>
                             <input type="text" class="form-control" id="contactName" name="contactName" required>
@@ -191,6 +191,7 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+                    <div id="messageBox" style="display:none; margin-top: 20px; color: #ff4500; font-weight: bold;"></div>
                 </div>
             </div>
         </main>
@@ -206,7 +207,13 @@
             <a href="https://github.com/VikAsNeHrA1/Order-Management-app" target="_blank" style="color: #ff4500;">The Project Spellbook 📖</a>
         </p>
     </div>
-    
+    <script>
+        function showMessage(event) {
+            event.preventDefault(); // Prevents the default form submission
+            document.getElementById('messageBox').style.display = 'block'; // Makes the message box visible
+            document.getElementById('messageBox').innerHTML = '🌟 Your query has been magically registered! We\'ll conjure up a response and get back to you soon! 🌟';
+        }
+    </script>
 
     <footer>
         <img src="https://github.com/VikAsNeHrA1/Order-Management-app/blob/main/views/footer.png?raw=true" alt="Footer Image" id="footer-image">
