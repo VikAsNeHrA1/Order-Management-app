@@ -167,7 +167,7 @@ app.get('/contact', (req, res) => {
 });
 
 app.get('/home', (req, res) => {
-  res.render('login'); // Assuming you have a login.ejs file
+  res.render('login'); // Assuming you have a home.ejs file
 });
 
 app.get('/store-owner', (req, res) => {
