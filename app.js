@@ -178,5 +178,8 @@ app.get('/store-owner', (req, res) => {
 app.get('/about', (req, res) => {
   res.render('aboutUs'); 
 });
+app.get('/gallery', (req, res) => {
+  res.render('ourGallery'); 
+});
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
