@@ -163,16 +163,20 @@ function checkUserType(requiredType) {
 }
 
 app.get('/contact', (req, res) => {
-  res.render('contactUs'); // Assuming you have a contactUs.ejs file in your views folder
+  res.render('contactUs');
 });
 
 app.get('/home', (req, res) => {
-  res.render('login'); // Assuming you have a home.ejs file
+  res.render('login'); 
 });
 
 app.get('/store-owner', (req, res) => {
   const username = req.session.username; // Get the username from the session
   res.render('store-owner', { username }); // Pass the username to the view
+});
+
+app.get('/about', (req, res) => {
+  res.render('aboutUs'); 
 });
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
