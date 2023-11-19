@@ -12,6 +12,8 @@ const uri = process.env.MONGO_URI;
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// Serve static files from the "static" directory
+app.use(express.static('static'));
 
 // Initialize session management middleware first
 app.use(session({
@@ -181,5 +183,18 @@ app.get('/about', (req, res) => {
 app.get('/gallery', (req, res) => {
   res.render('ourGallery'); 
 });
+
+// Will's addition
+
+app.get('/warehouse', async (req, res) => {
+  try {
+      const collection = client.db("warehouse").collection("orders");
+      let orders = await collection.find().toArray();
+      res.render('warehouse', { orders });  
+  } catch (err) {
+      res.status(500).send("Error fetching orders");
+  }
+});
+
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
