@@ -6,133 +6,22 @@
     <title>101 Distributors - Manager</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
 
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        .header {
-            background-color: #0f6ecd;
-            padding: 10px 5%;
-            color: white;
-        }
-
-        .logo img {
-            max-height: 50px;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 0;
-        }
-
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #fffdd0;
-        }
-
-        .main-content {
-            padding: 20px 5%;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid #ddd;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 20px 0;
-            margin-top: 30px;
-        }
-
-        .footer-image {
-            width: 100%;
-            height: auto;
-        }
-
-        @media (min-width: 768px) {
-            .footer-image {
-                width: 50%; 
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .footer-image {
-                width: 100%; 
-            }
-        }
-
-        footer img {
-          max-width: 100%; 
-    height: auto;
-        }
-    </style>
 </head>
 <body>
-  <header>
-    <nav>
-        <div class="logo"><img src="https://www.101distributorsga.com/images/header/logo.png" alt="Logo"></div>
-        <ul class="d-flex gap-3"> <!-- Bootstrap utility classes for layout and spacing -->
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">About us</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </nav>
+<header> 
+  <nav class="container d-flex justify-content-between">
+      <div class="logo">
+          <img src="https://www.101distributorsga.com/images/header/logo.png" alt="101 Distributors Logo">
+      </div>
+      <ul class="d-flex align-items-center">
+          <li><a href="/home">Home</a></li>
+          <li><a href="/gallery">Gallery</a></li>
+          <li><a href="/about">About us</a></li>
+          <li><a href="/contact">Contact</a></li>
+      </ul>
+  </nav>
 </header>
 <div class="main-content">
     <main>
@@ -265,3 +154,4 @@ function printOrder(storeName, orderList) {
 
 </body>
 </html>
+

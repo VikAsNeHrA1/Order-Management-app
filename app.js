@@ -22,6 +22,8 @@ app.set('view engine', 'ejs');
 // Middleware for parsing request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+// Serve static files from the "static" directory
+app.use(express.static('static'));
 
 // Session management middleware configuration
 app.use(session({
@@ -204,5 +206,24 @@ app.get('/gallery', (req, res) => {
   res.render('ourGallery'); 
 });
 
+
+// new addition iss34
+
+app.get('/warehouse', async (req, res) => {
+  try {
+      const collection = client.db("warehouse").collection("orders");
+      let orders = await collection.find().toArray();
+      res.render('warehouse', { orders });  
+  } catch (err) {
+      res.status(500).send("Error fetching orders");
+  }
+});
+
+
+app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+
 // Start the server
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+
