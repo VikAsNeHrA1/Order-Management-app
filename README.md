@@ -56,4 +56,38 @@ _Examples of Current Order Management_
    * Simple stock input mechanisms for store owners.
    * Efficient order processing for warehouse staff.
 
+ ## Features
+List the key features of our application:
+- User authentication (login/signup/logout)
+- CRUD operations on orders
+- Role-based access control for different user types (store, warehouse)
+- Session management
+- Responsive web pages with EJS templates
+
+## Technologies
+This project is built using:
+- Node.js
+- Express.js
+- MongoDB
+- [bcrypt for password hashing](https://github.com/VikAsNeHrA1/Order-Management-app/blob/ebbc22f43282cf317b0ca14f5007fc77f7911309/app.js#L151)
+- EJS for templating
+- dotenv for managing environment variables
+## How Login system is working 
+When a new user signs up, their password is hashed using bcrypt (with a salt round of 10) and stored in MongoDB, not as plain text.The hashed password is then stored in MongoDB with the username and user type. During login, the application checks the entered username and password. It retrieves the hashed password from the database and uses bcrypt.compare to match the entered password with the stored hash. If they match, the user is authenticated, session variables are set, and the user is redirected based on their user type.
+
+## Installation
+Follow these steps to set up the project locally:
+1. Clone the repository: `https://github.com/VikAsNeHrA1/Order-Management-app.git`
+2. Navigate to the project directory: `cd Order-Management-app`
+3. Install dependencies: `npm install`
+4. Create a `.env` file and set up the required environment variables (`PORT`, `MONGO_URI`)
+5. Start the server: `npm start`
+
+## API Endpoints
+- `GET /`: Home page
+- `POST /login`: User login
+- `POST /signup`: User registration
+- `GET /orders`: View all orders (restricted to 'warehouse' user type)
+- `POST /orders/add`: Add a new order
+
   
