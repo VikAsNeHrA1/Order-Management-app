@@ -72,6 +72,12 @@ This project is built using:
 - [bcrypt for password hashing](https://github.com/VikAsNeHrA1/Order-Management-app/blob/ebbc22f43282cf317b0ca14f5007fc77f7911309/app.js#L151)
 - EJS for templating
 - dotenv for managing environment variables
+## How Login system is working 
+When a new person joins and creates a password, the system doesn't just save this password as it is. It uses a special method called "bcrypt" to change it into a secure code, which is then saved. This method works by mixing the password with some extra data (called "salt") and changing it many times to make it really secure.
+
+When you log in, you type in your username and password. The system then finds your username in its records. It takes the password you typed in and uses bcrypt again to see if it matches the secure code it saved earlier. If they match, it means your password is right.
+
+Once you're logged in, the system remembers who you are and what kind of user you are (like a store or warehouse user). It uses this information to show you the right pages and options
 
 ## Installation
 Follow these steps to set up the project locally:
