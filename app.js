@@ -1,30 +1,42 @@
+// Load environment variables from .env file
 require('dotenv').config();
+
+// Import required modules
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const { ObjectId } = require('mongodb');
 const bcrypt = require('bcrypt');
 const session = require('express-session');
+
+// Set the port from environment variable or default to 5500
 const port = process.env.PORT || 5500;
+
+// MongoDB client setup
 const { MongoClient } = require('mongodb');
 const uri = process.env.MONGO_URI;
 
+// Set EJS as the view engine for rendering views
 app.set('view engine', 'ejs');
+
+// Middleware for parsing request bodies
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Initialize session management middleware first
+// Session management middleware configuration
 app.use(session({
-  secret: 'f3eGj9k5sD8j1M3cQ0zN6jV4bT7yL2xZ',
-  resave: false,
-  saveUninitialized: false
+  secret: 'f3eGj9k5sD8j1M3cQ0zN6jV4bT7yL2xZ', // Secret key for session hashing
+  resave: false, // Don't resave session if not modified
+  saveUninitialized: false // Don't create session until something is stored
 }));
 
+// Connect to MongoDB using the URI from the environment variable
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
+// Connect to MongoDB and handle connection errors
 client.connect().then(() => {
   console.log("Connected to MongoDB");
 }).catch(err => {
@@ -32,22 +44,27 @@ client.connect().then(() => {
   process.exit(1);
 });
 
+// Route for the home page
 app.get('/', (req, res) => {
-  res.render('login');
+  res.render('login'); // Render the login page
 });
 
+// Route for getting orders, with access control for warehouse users
 app.get('/orders', checkUserType('warehouse'), async (req, res) => {
   try {
+    // Access orders from MongoDB and display them
     const collection = client.db("warehouse").collection("orders");
     let orders = await collection.find().toArray();
-    res.render('warehouse', { orders });  
+    res.render('warehouse', { orders });
   } catch (err) {
     res.status(500).send("Error fetching orders");
   }
 });
 
+// Route for adding new orders
 app.post('/orders/add', async (req, res) => {
   try {
+    // Insert a new order into the MongoDB collection
     const collection = client.db("warehouse").collection("orders");
     await collection.insertOne({ storeName: req.body.storeName, orderList: req.body.orderList });
     
@@ -55,21 +72,23 @@ app.post('/orders/add', async (req, res) => {
     
     res.json({ success: true });
   } catch (err) {
-    
     res.json({ success: false, message: "Error adding order" });
   }
 });
 
+// Route for displaying order success page
 app.get('/order-success', (req, res) => {
   res.render('order-success');
 });
 
+// Route for updating an order by its ID
 app.post('/orders/update/:id', async (req, res) => {
   try {
+    // Update an existing order in the MongoDB collection
     const collection = client.db("warehouse").collection("orders");
     const updateObject = { orderList: req.body.orderList };
 
-    // Check if status is provided in the request
+    // Include status in update if provided
     if (req.body.status) {
         updateObject.status = req.body.status;
     }
@@ -84,9 +103,10 @@ app.post('/orders/update/:id', async (req, res) => {
   }
 });
 
-
+// Route for deleting an order by its ID
 app.post('/orders/delete/:id', async (req, res) => {
   try {
+    // Delete an order from the MongoDB collection
     const collection = client.db("warehouse").collection("orders");
     await collection.findOneAndDelete({ _id: new ObjectId(req.params.id) });
     res.redirect('/orders');
@@ -95,22 +115,21 @@ app.post('/orders/delete/:id', async (req, res) => {
   }
 });
 
-
-// For login
-
+// Routes for login functionality
 app.get('/login', (req, res) => {
-  res.render('login');
+  res.render('login'); // Render the login page
 });
 
 app.post('/login', async (req, res) => {
   const collection = client.db("warehouse").collection("users");
   const user = await collection.findOne({ username: req.body.username });
 
+  // Authenticate user and set session variables
   if (user && await bcrypt.compare(req.body.password, user.password)) {
-    // Setting userType and username in the session to be used for authorization and welcome message
     req.session.userType = user.userType;
-    req.session.username = user.username; // Store the username in the session
+    req.session.username = user.username;
 
+    // Redirect based on user type
     if (user.userType === 'store') {
       res.redirect('/store-owner');
     } else if (user.userType === 'warehouse') {
@@ -123,12 +142,13 @@ app.post('/login', async (req, res) => {
   }
 });
 
-
+// Routes for user registration
 app.get('/signup', (req, res) => {
-  res.render('signup');
+  res.render('signup'); // Render the signup page
 });
 
 app.post('/signup', async (req, res) => {
+  // Hash password and store new user
   const { username, password, userType } = req.body;
   try {
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -137,21 +157,21 @@ app.post('/signup', async (req, res) => {
     req.session.userType = userType;
     res.redirect('/login');
   } catch (err) {
-    console.error("Error during registration:", err);
     res.status(500).send("Error registering user");
   }
 });
 
+// Route for logging out
 app.post('/logout', (req, res) => {
   req.session.destroy((err) => {
     if (err) {
-      console.error("Error during logout:", err);
       res.status(500).send('Error during logout');
     }
-    res.redirect('/'); // redirect to login
+    res.redirect('/'); // Redirect to login page on successful logout
   });
 });
 
+// Middleware for checking user type
 function checkUserType(requiredType) {
   return (req, res, next) => {
     if (req.session && req.session.userType === requiredType) {
@@ -162,6 +182,7 @@ function checkUserType(requiredType) {
   }
 }
 
+// Static routes for additional pages
 app.get('/contact', (req, res) => {
   res.render('contactUs');
 });
@@ -171,15 +192,17 @@ app.get('/home', (req, res) => {
 });
 
 app.get('/store-owner', (req, res) => {
-  const username = req.session.username; // Get the username from the session
-  res.render('store-owner', { username }); // Pass the username to the view
+  const username = req.session.username;
+  res.render('store-owner', { username });
 });
 
 app.get('/about', (req, res) => {
   res.render('aboutUs'); 
 });
+
 app.get('/gallery', (req, res) => {
   res.render('ourGallery'); 
 });
 
+// Start the server
 app.listen(port, () => console.log(`Server is running on port ${port}`));
