@@ -56,4 +56,36 @@ _Examples of Current Order Management_
    * Simple stock input mechanisms for store owners.
    * Efficient order processing for warehouse staff.
 
+ ## Features
+List the key features of our application:
+- User authentication (login/signup/logout)
+- CRUD operations on orders
+- Role-based access control for different user types (store, warehouse)
+- Session management
+- Responsive web pages with EJS templates
+
+## Technologies
+This project is built using:
+- Node.js
+- Express.js
+- MongoDB
+- bcrypt for password hashing
+- EJS for templating
+- dotenv for managing environment variables
+
+## Installation
+Follow these steps to set up the project locally:
+1. Clone the repository: `https://github.com/VikAsNeHrA1/Order-Management-app.git`
+2. Navigate to the project directory: `cd Order-Management-app`
+3. Install dependencies: `npm install`
+4. Create a `.env` file and set up the required environment variables (`PORT`, `MONGO_URI`)
+5. Start the server: `npm start`
+
+## API Endpoints
+- `GET /`: Home page
+- `POST /login`: User login
+- `POST /signup`: User registration
+- `GET /orders`: View all orders (restricted to 'warehouse' user type)
+- `POST /orders/add`: Add a new order
+
   
