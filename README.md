@@ -73,11 +73,7 @@ This project is built using:
 - EJS for templating
 - dotenv for managing environment variables
 ## How Login system is working 
-When a new person joins and creates a password, the system doesn't just save this password as it is. It uses a special method called "bcrypt" to change it into a secure code, which is then saved. This method works by mixing the password with some extra data (called "salt") and changing it many times to make it really secure.
-
-When you log in, you type in your username and password. The system then finds your username in its records. It takes the password you typed in and uses bcrypt again to see if it matches the secure code it saved earlier. If they match, it means your password is right.
-
-Once you're logged in, the system remembers who you are and what kind of user you are (like a store or warehouse user). It uses this information to show you the right pages and options
+When a new user signs up, their password is hashed using bcrypt (with a salt round of 10) and stored in MongoDB, not as plain text.The hashed password is then stored in MongoDB with the username and user type. During login, the application checks the entered username and password. It retrieves the hashed password from the database and uses bcrypt.compare to match the entered password with the stored hash. If they match, the user is authenticated, session variables are set, and the user is redirected based on their user type.
 
 ## Installation
 Follow these steps to set up the project locally:
