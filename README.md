@@ -69,7 +69,7 @@ This project is built using:
 - Node.js
 - Express.js
 - MongoDB
-- bcrypt for password hashing
+- [bcrypt for password hashing](https://github.com/VikAsNeHrA1/Order-Management-app/blob/ebbc22f43282cf317b0ca14f5007fc77f7911309/app.js#L151)
 - EJS for templating
 - dotenv for managing environment variables
 
