@@ -1,6 +1,7 @@
 # Order-Management-app
 **This app provides a streamlined order management solution tailored for warehouse environments. Recognizing that small business owners often lack efficient order management tools and resort to platforms like WhatsApp for team and distributor communication, our app offers a user-friendly alternative.**
 
+## [Walkthrough Video ](https://drive.google.com/file/d/1IdeC132IrJuJXD5-VC3ov4GpsNETLk5C/view?usp=drive_link)
 
 ### User Story
 * **As a** store manager
